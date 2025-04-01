@@ -22,7 +22,7 @@
 
 // Structure to hold PWM mapping information
 typedef struct {
-    char physical_pin[10];  // Physical pin on the BeagleBone Black (e.g., "P9_16")
+    char physical_pin[10];     // Physical pin on the BeagleBone Black (e.g., "P9_16")
     char pwm_chip_channel[10]; // PWM chip and channel (e.g., "4:1")
 } PWMPinMap;
 
@@ -48,7 +48,7 @@ PWMPinMap pwm_phy_pin_map[] = {
     {"P8_13", "7:1"},  // eHRPWM2B
     {"P8_19", "7:0"},  // eHRPWM2A
     {"P9_28", "3:0"},  // eCAP1
-    {"P9_42", "0:0"}  // eCAP0
+    {"P9_42", "0:0"}   // eCAP0
 };
 
 // Function prototypes
@@ -64,4 +64,3 @@ int pwm_unset_pin_mode(PWM *pwm);
 unsigned int map(u_int16_t adc_value, unsigned int period_ns);
 
 #endif // PWM_H
-

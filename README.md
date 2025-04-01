@@ -1,4 +1,22 @@
-# bb.black pin library
+<div align="center">
+	<h1 align="center"><b>bb.black pin library</b></h1>
+</div>
+
+<p align="center">
+    <img alt="Static Badge" src="https://img.shields.io/badge/Beaglebone-Black?style=for-the-badge&logo=Linux&logoColor=white&labelColor=brown&color=orange" alt="Beaglebone Black">
+    <img src="https://img.shields.io/badge/Made%20with-C-3776AB?style=for-the-badge&logo=c&logoColor=white" alt="Made with C">
+    <a href="https://github.com/CompEng0001/bb.black_pin_library/blob/main/LICENSE.md">
+        <img alt="GitHub License" src="https://img.shields.io/github/license/CompEng0001/bb.black_pin_library?style=for-the-badge", alt="License MIT">
+    </a>
+  <a href="https://github.com/CompEng0001/bb.black_pin_library/stargazers">
+        <img src="https://img.shields.io/github/stars/CompEng0001/bb.black_pin_library?style=for-the-badge" alt="GitHub Stars">
+  </a>
+    <a href="https://github.com/CompEng0001/bb.black_pin_library/releases">
+        <img src="https://img.shields.io/github/downloads/CompEng0001/bb.black_pin_library/total?style=for-the-badge" alt="GitHub Downloads">
+    </a>
+</p> 
+
+
 
 
 ## Overview

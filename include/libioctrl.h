@@ -8,4 +8,3 @@
 #include "adc.h"
 
 #endif // LIBIOCTRL_H
-

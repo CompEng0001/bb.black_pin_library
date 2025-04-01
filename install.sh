@@ -1,5 +1,3 @@
-[ "$UID" -eq 0 ] || exec sudo bash -e "$0" "$@"
-
 #
 # Copyright (c) 2024 Seb Blair <s.blair@gre.ac.uk>
 #
@@ -20,6 +18,8 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+
+[ "$UID" -eq 0 ] || exec sudo bash -e "$0" "$@"
 
 arch=$(uname -m)
 
