@@ -11,9 +11,6 @@
   <a href="https://github.com/CompEng0001/bb.black_pin_library/stargazers">
         <img src="https://img.shields.io/github/stars/CompEng0001/bb.black_pin_library?style=for-the-badge" alt="GitHub Stars">
   </a>
-    <a href="https://github.com/CompEng0001/bb.black_pin_library/releases">
-        <img src="https://img.shields.io/github/downloads/CompEng0001/bb.black_pin_library/total?style=for-the-badge" alt="GitHub Downloads">
-    </a>
 </p> 
 
 
