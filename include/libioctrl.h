@@ -1,11 +1,8 @@
-// libioctrl.h
-
 #ifndef LIBIOCTRL_H
 #define LIBIOCTRL_H
 
-#include "gpio.h"
-#include "pwm.h"
-#include "adc.h"
+#include "bbb_gpio.h"
+#include "bbb_pwm.h"
+#include "bbb_adc.h"
 
 #endif // LIBIOCTRL_H
-

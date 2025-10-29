@@ -1,9 +1,9 @@
-#ifndef ADC_H_
-#define ADC_H_
+#ifndef BBB_ADC_H_
+#define BBB_ADC_H_
 
 /**************************************************
- * Contents                                       *
- * ***********************************************/
+* Contents                                       *
+* ***********************************************/
 
 #define SYSFS_ADC_DIR "/sys/bus/iio/devices/iio:device0"
 #define SYSFS_ADC_ENABLE_PATH "/sys/bus/iio/devices/iio:device0/buffer/enable"
@@ -16,11 +16,11 @@
 #define MAX_LEN_BUF 100
 #define ADC_BUF 6
 #define REFVOLTAGE 1.8
-#define MAXADC 4095 
+#define MAXADC 4096
 #define MAX_SAMPLE_RATE 2000000 // 200kSPS
 
 /************************************************
- * ADC RELATED                                  *
+* ADC RELATED                                  *
 ************************************************/
 int adc_get_value(unsigned int adcPin, unsigned int *value);
 int adc_fd_open(unsigned int gpio);
@@ -33,4 +33,5 @@ int enable_buffer(void);
 int disable_buffer(void);
 int set_buffer_length(unsigned int len);
 
-#endif /* ADC_H_*/
+#endif /* BBB_ADC_H_*/
+

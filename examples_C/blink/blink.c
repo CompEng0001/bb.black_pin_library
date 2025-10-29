@@ -1,24 +1,24 @@
-#include <stdio.h>
+#include <libioctrl.h>
 #include <unistd.h>
-#include "libioctrl.h"
+#include <stdio.h>
 
-int main() {
-    const char *pin_name = "P8_17";  // Use the pin name directly
-
-    gpio_set_dir(pin_name, OUTPUT_PIN);
-    while (1){
-        // Set the GPIO pin value to HIGH (turn on the LED)
-        gpio_set_value(pin_name, HIGH);
-        printf("LED on %s is ON\n", pin_name);
-
-        // Wait for a few seconds
-        sleep(3);
-
-        // Set the GPIO pin value to LOW (turn off the LED)
-        gpio_set_value(pin_name, LOW);
-        printf("LED on %s is OFF\n", pin_name);
-        sleep(3);
+int main(void) {
+    // Open P9_12 as output, initial value 0 (off)
+    BbbGpio *led = bbb_open("P9_12", true, 0, "blink");
+    if (!led) {
+        fprintf(stderr, "Failed to open GPIO\n");
+        return 1;
     }
+
+    // Blink LED 5 times
+    for (int i = 0; i < 5; i++) {
+        bbb_write(led, 1);   // LED on
+        usleep(500000);
+        bbb_write(led, 0);   // LED off
+        usleep(500000);
+    }
+
+    bbb_close(led);
     return 0;
 }
 

@@ -1,4 +1,4 @@
-#include "../include/pwm.h"
+#include "bbb_pwm.h"
 
 // Initialize PWM structure with precomputed file paths
 int pwm_init(PWM *pwm, const char *pin_name) {
@@ -6,14 +6,15 @@ int pwm_init(PWM *pwm, const char *pin_name) {
     // Parse the pwmchip and pwm channel
     char pwm_chip[4], pwm_channel[4];
 
-    for (int i = 0; i < sizeof(pwm_phy_pin_map) / sizeof(PWMPinMap); i++) {
-        if (strcmp(pwm_phy_pin_map[i].physical_pin, pin_name) == 0) {
+    for (int i = 0; i < sizeof(phy_pin_map) / sizeof(PinMap); i++) {
+        if (strcmp(phy_pin_map[i].physical_pin, pin_name) == 0) {
             // Parse the pwmchip and pwm channel
-            sscanf(pwm_phy_pin_map[i].pwm_chip_channel, "%[^:]:%s", pwm_channel, pwm_chip);
+            sscanf(phy_pin_map[i].pwm_chip_channel, "%[^:]:%s", pwm_channel, pwm_chip);
         }
     }
 
     // Store the PWM chip and channel as a string
+
     strncpy(pwm->phy_pin, pin_name, sizeof(pwm->phy_pin));
     strncpy(pwm->chip, pwm_chip, sizeof(pwm->chip));
     strncpy(pwm->channel, pwm_channel, sizeof(pwm->channel));
@@ -22,13 +23,13 @@ int pwm_init(PWM *pwm, const char *pin_name) {
     snprintf(pwm->period_path, sizeof(pwm->period_path), PWM_PERIOD_PATH, pwm_channel, pwm_chip);
     snprintf(pwm->duty_cycle_path, sizeof(pwm->duty_cycle_path), PWM_DUTY_CYCLE_PATH, pwm_channel, pwm_chip);
     snprintf(pwm->enable_path, sizeof(pwm->enable_path), PWM_ENABLE_PATH, pwm_channel, pwm_chip);
-    snprintf(pwm->pin_mode_path, sizeof(pwm->pin_mode_path), PWM_PIN_MODE_PATH, pin_name);
+    //snprintf(pwm->pin_mode_path, sizeof(pwm->pin_mode_path), PWM_PIN_MODE_PATH, pin_name);
 
     // Set PWM pin for PWM mode
-    pwm_set_pin_mode(pwm);
+    //pwm_set_pin_mode(pwm);
 
     // Get PWM pin state
-    pwm_get_pin_mode(pwm);
+    //pwm_get_pin_mode(pwm);
 
     return 0;
 }
@@ -39,7 +40,7 @@ int pwm_cleanup(PWM *pwm) {
     pwm_set_period(pwm, PWM_PERIOD_DEFAULT);
     pwm_set_duty_cycle(pwm, PWM_DUTY_CYCLE_DEFAULT);
     pwm_enable(pwm);
-    pwm_unset_pin_mode(pwm);
+    //pwm_unset_pin_mode(pwm);
 
     return 0;
 }
@@ -92,57 +93,6 @@ int pwm_disable(PWM *pwm) {
     }
 
     fprintf(fp, "0");
-    fclose(fp);
-    return 0;
-}
-
-// Get pin mode current state
-int pwm_get_pin_mode(PWM *pwm){
-
-    FILE *fp = fopen(pwm->pin_mode_path, "r");
-
-    if (fp == NULL) {
-        perror("Error opening state file");
-        return -1;
-    }
-    
-
-     // Clear the buffer and read up to STATE_BUF - 1 characters
-    memset(pwm->pin_mode_state, 0, sizeof(pwm->pin_mode_state)); // Clear the buffer
-    size_t chars_read = fread(pwm->pin_mode_state, 1, sizeof(pwm->pin_mode_state) - 1, fp);
-
-    // Null-terminate the string to avoid junk data
-    pwm->pin_mode_state[chars_read] = '\0';
-
-    fclose(fp);  // Close the file after reading
-
-    return 0;
-}
-
-// Set pin mode to PWM
-int pwm_set_pin_mode(PWM *pwm) {
-    
-    FILE *fp = fopen(pwm->pin_mode_path, "w");
-    if (fp == NULL) {
-        perror("Error opening state file");
-        return -1;
-    }
-    
-    fprintf(fp, "pwm");
-    fclose(fp);
-    return 0;
-}
-
-// Set pin mode back to default
-int pwm_unset_pin_mode(PWM *pwm) {
-    
-    FILE *fp = fopen(pwm->pin_mode_path, "w");
-    if (fp == NULL) {
-        perror("Error opening state file");
-        return -1;
-    }
-    
-    fprintf(fp, "default");
     fclose(fp);
     return 0;
 }

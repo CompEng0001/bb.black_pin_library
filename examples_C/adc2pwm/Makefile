@@ -16,11 +16,11 @@ all: $(TARGET)
 
 # Build the executable
 $(TARGET): $(SRC)
-        $(CC) $(CFLAGS) $(SRC) $(LIBS) -o $(TARGET)
+	$(CC) $(CFLAGS) $(SRC) $(LIBS) -o $(TARGET)
 
 # Clean up build artifacts
 clean:
-        rm -f $(TARGET)
+	rm -f $(TARGET)
 
 # Phony targets to avoid conflicts with files of the same name
 .PHONY: all clean
