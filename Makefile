@@ -16,7 +16,7 @@ TARGET_STATIC = libioctrl.a
 TARGET_SHARED = libioctrl.so
 
 # Source files for each component
-SRC = $(SRCDIR)/gpio.c $(SRCDIR)/pwm.c $(SRCDIR)/adc.c
+SRC = $(SRCDIR)/bbb_gpio.c $(SRCDIR)/bbb_pwm.c $(SRCDIR)/bbb_adc.c
 OBJ = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
 # Default target: Build both libraries
@@ -41,13 +41,13 @@ clean:
 
 # Install libraries and headers
 install: $(TARGET_STATIC) $(TARGET_SHARED)
-	sudo cp include/gpio.h include/pwm.h include/adc.h include/libioctrl.h $(INCLUDEDIR)/
+	sudo cp include/bbb_gpio.h include/bbb_pwm.h include/bbb_adc.h include/libioctrl.h $(INCLUDEDIR)/
 	sudo cp $(TARGET_STATIC) $(TARGET_SHARED) $(LIBDIR)/
 	sudo ldconfig
 
 # Uninstall libraries and headers
 uninstall:
-	sudo rm -f $(INCLUDEDIR)/gpio.h $(INCLUDEDIR)/pwm.h $(INCLUDEDIR)/adc.h $(INCLUDEDIR)/libioctrl.h
+	sudo rm -f $(INCLUDEDIR)/bbb_gpio.h $(INCLUDEDIR)/bbb_pwm.h $(INCLUDEDIR)/bbb_adc.h $(INCLUDEDIR)/libioctrl.h
 	sudo rm -f $(LIBDIR)/$(TARGET_STATIC) $(LIBDIR)/$(TARGET_SHARED) $(OBJDIR)
 	sudo ldconfig
 
